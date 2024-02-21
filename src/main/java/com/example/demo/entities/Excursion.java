@@ -40,7 +40,7 @@ public class Excursion {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "vacation_title")
+    @JoinColumn(name = "vacation_id")
     private Vacation vacation;
 
     @ManyToMany(mappedBy = "excursions")
