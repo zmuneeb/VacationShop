@@ -43,6 +43,12 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private Set<CartItem> cart_items;
 
+    public void add(CartItem cartItem) {
+    }
+
+    public void setCartItems(Set<CartItem> cartItems) {
+    }
+
     public enum StatusType {
         pending,
         ordered,
