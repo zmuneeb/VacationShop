@@ -17,11 +17,11 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @Column(name = "order_tracking_number")
-    private String orderTrackingNumber;
-
     @Column(name = "package_price")
     private BigDecimal package_price;
+
+    @Column(name = "order_tracking_number")
+    private String orderTrackingNumber;
 
     @Column(name = "party_size")
     private int party_size;

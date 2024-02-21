@@ -1,8 +1,12 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -33,11 +37,14 @@ public class Customer {
     private String phone;
 
     @Column(name = "create_date")
+    @CreationTimestamp
     private Date createDate;
 
     @Column(name = "last_update")
+    @UpdateTimestamp
     private Date lastUpdate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "division_id")
     private Division division;

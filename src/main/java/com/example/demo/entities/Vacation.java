@@ -1,8 +1,13 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -22,11 +27,20 @@ public class Vacation {
     private String description;
 
     @Column(name = "travel_fare_price")
-    private double travel_price;
+    private BigDecimal travel_price;
 
     @Column(name = "image_url")
     private String image_URL;
 
-    @OneToMany(mappedBy = "vacation")
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date create_date;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private Date last_update;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "vacation", fetch = FetchType.EAGER)
     private Set<Excursion> excursions;
 }

@@ -1,8 +1,11 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -28,13 +31,16 @@ public class Excursion {
     private String image_URL;
 
     @Column(name = "create_date")
-    private Date createDate;
+    @CreationTimestamp
+    private Date create_date;
 
     @Column(name = "last_update")
-    private Date lastUpdate;
+    @UpdateTimestamp
+    private Date last_update;
 
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "vacation_id")
+    @JoinColumn(name = "vacation_title")
     private Vacation vacation;
 
     @ManyToMany(mappedBy = "excursions")
