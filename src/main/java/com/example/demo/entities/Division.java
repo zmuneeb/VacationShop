@@ -31,15 +31,19 @@ public class Division {
     @UpdateTimestamp
     private Date last_update;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
+
+    @Column (name = "country_id")
+    private long country_id;
+    public void setCountry(Country country) {
+        setCountry_id(country.getId());
+        this.country = country;
+    }
 
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.EAGER)
     private Set<Customer> customers = new HashSet<>();
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
 }
