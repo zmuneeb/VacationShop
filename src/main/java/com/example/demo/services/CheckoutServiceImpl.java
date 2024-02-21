@@ -8,7 +8,6 @@ import com.example.demo.entities.Customer;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,12 +15,10 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
-    private final CartRepository cartRepository;
 
     @Autowired
     public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
         this.customerRepository = customerRepository;
-        this.cartRepository = cartRepository;
     }
 
     @Override
@@ -36,7 +33,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         // populate cart with cartItems
         Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(cart::add);
+        cartItems.forEach(cartItem -> cart.add(cartItem));
 
         // populate order with customer
         cart.setCartItems(purchase.getCartItems());
@@ -49,7 +46,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         // save to the database
         customerRepository.save(customer);
-        cartRepository.save(cart);
 
         // return a response
         return new PurchaseResponse(orderTrackingNumber);
