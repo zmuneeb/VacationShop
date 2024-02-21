@@ -25,3 +25,28 @@ If you need additional support, please navigate to the course page and reach out
 ## FUTURE USE
 Take this opportunity to create or add to a simple resume portfolio to highlight and showcase your work for future use in career search, experience, and education!
 
+## PART A
+
+ - Cloned repository from GitLab and created new "working_branch" branch.
+ - Created the Java project using Spring Initializr. Added 4 dependencies: Spring Data JPA, Rest Repositories, MySQL Driver, and Lombok.
+
+## PART B
+
+ - Added spring.io files to src (d288-back-end-programming).
+
+## PART C
+
+ - Constructed 5 new packages: controllers, entities, dao, services, and config. Located in java.com.example.demo.
+ - Added application.properties from LabFiles to src/main/resources.
+ - Added RestDataConfig.java from LabFiles to config package.
+
+## PART D
+
+ - Created entities from UML diagram to create classes. Added these to entities package.
+ - Imported entities in RestDataConfig.java.
+ - Updated mappings of relationships between columns in tables.
+
+## PART E
+
+ - Created dao interfaces: CartItemRepository, CartRepository, CountryRepository, CustomerRepository, DivisionRepository, ExcursionRepository, VacationRepository using @CrossOrigin.
+ - Opened pom.xml as a Maven project so project can run now
