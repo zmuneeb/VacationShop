@@ -13,5 +13,4 @@ public class Purchase {
     private Cart cart;
     private Set<CartItem> cartItems;
 
-    // getters and setters
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -44,9 +45,18 @@ public class Cart {
     private Set<CartItem> cart_items;
 
     public void add(CartItem cartItem) {
+        if (cart_items == null) {
+            cart_items = new HashSet<>();
+        }
+        cart_items.add(cartItem);
+        cartItem.setCart(this);
     }
 
     public void setCartItems(Set<CartItem> cartItems) {
+        this.cart_items = cartItems;
+        for (CartItem cartItem : cartItems) {
+            cartItem.setCart(this);
+        }
     }
 
     public enum StatusType {
