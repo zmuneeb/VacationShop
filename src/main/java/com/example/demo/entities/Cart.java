@@ -37,11 +37,11 @@ public class Cart {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "Customer_ID")
     private Customer customer;
 
     @OneToMany(mappedBy = "cart")
-    private Set<CartItem> cartItems;
+    private Set<CartItem> cart_items;
 
     public enum StatusType {
         pending,

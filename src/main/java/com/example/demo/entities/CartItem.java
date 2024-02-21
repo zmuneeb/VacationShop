@@ -28,11 +28,11 @@ public class CartItem {
     private Date lastUpdate;
 
     @ManyToOne
-    @JoinColumn(name = "vacation_id")
+    @JoinColumn(name = "Vacation_ID")
     private Vacation vacation;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "Cart_ID")
     private Cart cart;
 
     @ManyToMany

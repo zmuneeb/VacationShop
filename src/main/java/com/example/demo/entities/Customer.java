@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.util.Date;
 import java.util.Set;
 
@@ -46,7 +45,7 @@ public class Customer {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "division_id")
+    @JoinColumn(name = "Division_ID")
     private Division division;
 
     @OneToMany(mappedBy = "customer")
