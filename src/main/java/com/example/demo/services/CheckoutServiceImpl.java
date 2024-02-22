@@ -1,12 +1,10 @@
 package com.example.demo.services;
 
-import com.example.demo.dao.CartRepository;
 import com.example.demo.dao.CustomerRepository;
 import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.UUID;
@@ -16,8 +14,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
 
-    @Autowired
-    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
+    public CheckoutServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -33,7 +30,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         // populate cart with cartItems
         Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(cartItem -> cart.add(cartItem));
+        cartItems.forEach(item -> cart.add(item));
 
         // populate order with customer
         cart.setCartItems(purchase.getCartItems());
