@@ -63,6 +63,10 @@ public class Cart {
         return this.orderTrackingNumber;
     }
 
+    public Set<CartItem> getCartItems() {
+        return this.cart_items;
+    }
+
     public enum StatusType {
         pending,
         ordered,

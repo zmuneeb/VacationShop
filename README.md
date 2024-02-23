@@ -50,3 +50,23 @@ Take this opportunity to create or add to a simple resume portfolio to highlight
 
  - Created dao interfaces: CartItemRepository, CartRepository, CountryRepository, CustomerRepository, DivisionRepository, ExcursionRepository, VacationRepository using @CrossOrigin.
  - Opened pom.xml as a Maven project so project can run now
+
+## PART F
+
+ - Wrote code for the services package that included 3 new classes and an interface.
+ - Created CheckoutServiceImpl.java which will generate a random tracking number and paste that onto the checkout screen.
+ - Edited cart.java, cartitem.java, and customer.java to handle added cart items and tracking number. 
+
+## PART G
+
+ - Wrote code to include validation to enforce the inputs needed by the Angular front-end.
+ - In Customer.java, added nullable = false to customer_id, customer_first_name, customer_last_name, address, postal_code, and phone.
+
+## PART H
+
+ - Wrote code for the controllers package that includes a REST controller checkout controller class with a post mapping to place orders.
+ - Added new class to controllers package, called CheckoutController.java. This will handle the checkout operations in the front-end.
+
+## PART I
+
+ - 
