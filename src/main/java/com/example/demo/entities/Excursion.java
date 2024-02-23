@@ -40,9 +40,14 @@ public class Excursion {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "Vacation_ID", nullable = false)
+    @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation;
 
-    @ManyToMany(mappedBy = "excursions")
+    @ManyToMany
+    @JoinTable(
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "excursion_id"),
+            inverseJoinColumns = @JoinColumn(name = "cart_item_id")
+    )
     private Set<CartItem> cart_items;
 }

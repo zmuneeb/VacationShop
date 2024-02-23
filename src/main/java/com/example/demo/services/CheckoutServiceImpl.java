@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dao.CartRepository;
 import com.example.demo.dao.CustomerRepository;
 import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
@@ -13,9 +14,11 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
+    private final CartRepository cartRepository;
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository) {
+    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
         this.customerRepository = customerRepository;
+        this.cartRepository = cartRepository;
     }
 
     @Override
@@ -42,6 +45,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         cart.setStatus(Cart.StatusType.ordered);
 
         // save to the database
+        cartRepository.save(cart);
         customerRepository.save(customer);
 
         // return a response

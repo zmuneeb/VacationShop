@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,11 +29,12 @@ public class CartItem {
     private Date lastUpdate;
 
     @ManyToOne
-    @JoinColumn(name = "Vacation_ID")
+    @JsonBackReference
+    @JoinColumn(name = "vacation_id", nullable = false)
     private Vacation vacation;
 
     @ManyToOne
-    @JoinColumn(name = "Cart_ID")
+    @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
     @ManyToMany

@@ -1,11 +1,16 @@
 package com.example.demo.services;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class PurchaseResponse {
     @NonNull
     private final String orderTrackingNumber;
 
+    public PurchaseResponse(@NonNull String orderTrackingNumber) {
+        this.orderTrackingNumber = orderTrackingNumber;
+    }
 }

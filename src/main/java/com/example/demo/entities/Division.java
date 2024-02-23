@@ -32,7 +32,7 @@ public class Division {
     private Date last_update;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Country_ID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 
     @Column (name = "country_id")
@@ -46,4 +46,7 @@ public class Division {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.EAGER)
     private Set<Customer> customers = new HashSet<>();
 
+    public void setDivision_name(String division_name) {
+        this.division_name = division_name;
+    }
 }
