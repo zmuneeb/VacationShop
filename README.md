@@ -69,4 +69,4 @@ Take this opportunity to create or add to a simple resume portfolio to highlight
 
 ## PART I
 
- - 
+ - Created a fake order with two excursions and one vacation, and took screenshots to verify no errors in front-end or database.
