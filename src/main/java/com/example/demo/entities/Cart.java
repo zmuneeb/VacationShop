@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +25,7 @@ public class Cart {
     private BigDecimal package_price;
 
     @Column(name = "order_tracking_number")
-    private String orderTrackingNumber; // Added this line
+    private String orderTrackingNumber;
 
     @Column(name = "party_size")
     private int party_size;
@@ -30,6 +33,14 @@ public class Cart {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "ENUM('pending', 'ordered', 'canceled')")
     private StatusType status;
+
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date createDate;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
+    private Date lastUpdate;
 
     @ManyToOne
     @JsonBackReference
@@ -55,10 +66,10 @@ public class Cart {
     }
 
     public void setOrderTrackingNumber(String orderTrackingNumber) {
-        this.orderTrackingNumber = orderTrackingNumber; // Updated this line
+        this.orderTrackingNumber = orderTrackingNumber;
     }
 
-    // Add a getter for orderTrackingNumber
+
     public String getOrderTrackingNumber() {
         return this.orderTrackingNumber;
     }

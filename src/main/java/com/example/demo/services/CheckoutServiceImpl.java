@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dao.CartItemRepository;
 import com.example.demo.dao.CartRepository;
 import com.example.demo.dao.CustomerRepository;
 import com.example.demo.entities.Cart;
@@ -15,40 +16,37 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     private final CustomerRepository customerRepository;
     private final CartRepository cartRepository;
+    private final CartItemRepository cartItemRepository;
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
+    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.customerRepository = customerRepository;
         this.cartRepository = cartRepository;
+        this.cartItemRepository = cartItemRepository;
     }
 
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
-        // retrieve the cart info from dto
+
         Cart cart = purchase.getCart();
 
-        // generate tracking number
         String orderTrackingNumber = generateOrderTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
-        // populate cart with cartItems
-        Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(item -> cart.add(item));
-
-        // populate order with customer
-        cart.setCartItems(purchase.getCartItems());
         cart.setCustomer(purchase.getCustomer());
-
         Customer customer = purchase.getCustomer();
         customer.add(cart);
-
         cart.setStatus(Cart.StatusType.ordered);
 
-        // save to the database
-        cartRepository.save(cart);
+        Cart savedCart = cartRepository.save(cart);
         customerRepository.save(customer);
 
-        // return a response
+        Set<CartItem> cartItems = purchase.getCartItems();
+        cartItems.forEach(item -> {
+            item.setCart(savedCart);
+            cartItemRepository.save(item);
+        });
+
         return new PurchaseResponse(orderTrackingNumber);
     }
 

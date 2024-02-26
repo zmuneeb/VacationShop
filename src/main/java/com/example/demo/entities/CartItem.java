@@ -36,7 +36,6 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
-
     @ManyToMany
     @JoinTable(
             name = "excursion_cartitem",
@@ -44,4 +43,8 @@ public class CartItem {
             inverseJoinColumns = @JoinColumn(name = "excursion_id")
     )
     private Set<Excursion> excursions;
+
+    public Set<Excursion> getExcursions() {
+        return this.excursions;
+    }
 }

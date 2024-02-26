@@ -20,10 +20,10 @@ public class CheckoutController {
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
 
         if (purchase.getCartItems().isEmpty()) {
-            // Return a response indicating that the cart is empty
+
             return new PurchaseResponse("No items in cart!");
         } else {
-            // Proceed with the checkout process
+
             PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
             return purchaseResponse;
         }

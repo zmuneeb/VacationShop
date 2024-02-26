@@ -24,7 +24,7 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Create divisions
+
         Country country1 = new Country();
         country1.setCountry_name("Country 1");
         countryRepository.save(country1);
@@ -39,6 +39,7 @@ public class BootStrapData implements CommandLineRunner {
         if (customer1 == null) {
             customer1 = new Customer("Jimmy", "Dolan", "123 Clove Road", "31231", "(555)555-5556", division1);
             division1.getCustomers().add(customer1);
+            divisionRepository.save(division1);
             customerRepository.save(customer1);
         }
 
@@ -47,12 +48,14 @@ public class BootStrapData implements CommandLineRunner {
             customer2 = new Customer("Adam", "Philips", "456 John Street", "12345", "(555)555-5557", division1);
             division1.getCustomers().add(customer2);
             customerRepository.save(customer2);
+            divisionRepository.save(division1);
         }
 
         Customer customer3 = customerRepository.findByAddress("789 Willowbrook Road");
         if (customer3 == null) {
             customer3 = new Customer("Bobby", "Ericson", "789 Willowbrook Road", "12312", "(555)555-5558", division1);
             division1.getCustomers().add(customer3);
+            divisionRepository.save(division1);
             customerRepository.save(customer3);
         }
 
@@ -60,6 +63,7 @@ public class BootStrapData implements CommandLineRunner {
         if (customer4 == null) {
             customer4 = new Customer("Christopher", "Moltisanti", "112 Broadway Street", "12311", "(555)555-5559", division1);
             division1.getCustomers().add(customer4);
+            divisionRepository.save(division1);
             customerRepository.save(customer4);
         }
 
@@ -67,10 +71,9 @@ public class BootStrapData implements CommandLineRunner {
         if (customer5 == null) {
             customer5 = new Customer("Anthony", "Blundetto", "431 Hickson Avenue", "12121", "(555)555-5560", division1);
             division1.getCustomers().add(customer5);
+            divisionRepository.save(division1);
             customerRepository.save(customer5);
         }
-
-        divisionRepository.save(division1);
 
 
         Iterable<Customer> customers = customerRepository.findAll();
