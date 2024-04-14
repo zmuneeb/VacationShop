@@ -1,4 +1,4 @@
-# Vacation Shop
+# Vacation Store
 Welcome to my Vacation Shop! In this web application, you can add vacations along with excursions to a cart, and create orders.
 
 ## PART A
